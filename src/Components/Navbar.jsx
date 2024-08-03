@@ -7,13 +7,14 @@ import Button from "@mui/material/Button";
 import { FormControlLabel, Switch, IconButton, Drawer, List, ListItem, ListItemText } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useMediaQuery, useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const [drawerOpen, setDrawerOpen] = React.useState(false);
     const [darkMode, setDarkMode] = React.useState(false);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  
+    const navigate=useNavigate()
     const handleChange = (event) => {
       setDarkMode(event.target.checked);
     };
@@ -37,7 +38,7 @@ const Navbar = () => {
   
     return (
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={darkMode ? { backgroundColor: "#212121" } : { backgroundColor: "#0091ea" }}>
+        <AppBar position="static" sx={!darkMode ? { backgroundColor: "#031D36" } : { backgroundColor: "#0091ea" }}>
           <Toolbar>
             {isMobile && (
               <IconButton
@@ -51,7 +52,7 @@ const Navbar = () => {
                 <MenuIcon sx={{fontSize : "2rem"}}/>
               </IconButton>
             )}
-            <Typography variant="h4" component="div" sx={{ flexGrow: 1, fontWeight :"900" }}>
+            <Typography variant="h4" component="div" onClick={()=>navigate("/userDashboard")} sx={{ flexGrow: 1, fontWeight :"900" }}>
             <span>Project</span>Tracker
             </Typography>
            <Box sx={{width : "25%", height : "100%" , display :"flex", alignItems :"center" , justifyContent : "space-around"}}>

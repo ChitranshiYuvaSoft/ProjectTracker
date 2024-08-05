@@ -1,8 +1,58 @@
 import { Box, Button, List, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FeatureList from "../Components/FeatureScreen/FeatureList";
+import { useDispatch, useSelector } from "react-redux";
+import { featureCreate, featureUpdate } from "../Redux/Features/featureSlice";
+import { useParams } from "react-router-dom";
 
 const FeatureScreen = () => {
+  const {featureData, edit} = useSelector(state => state.feature);
+  // console.log(featureData);
+
+  const dispatch = useDispatch();
+  const { _id } = useParams();
+
+  const dataFeature = featureData.filter((item) => item?.project_id == _id);
+
+
+  // Feature Create and Update
+  const [title, setTitle] = useState("");
+  const [editTitle, setEditTitle] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(!title){
+      alert("Feature is mandatory!!");
+    }else{
+      dispatch(
+        featureCreate({
+          project_id: _id,
+          _id: crypto.randomUUID(),
+          title,
+        })
+      );
+      setTitle("");
+    }
+  };
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    if(!editTitle){
+      alert("Title is mandatory!!");
+    }else{
+      dispatch(
+        featureUpdate({
+          _id: edit.feature._id,
+          title: editTitle,
+          project_id: edit.feature.project_id,
+        })
+      );
+      setEditTitle("");
+    }
+  };
+  useEffect(() => {
+    setEditTitle(edit?.feature?.title);
+  }, [edit]);
+
+
   return (
     <Box
       sx={{
@@ -73,22 +123,29 @@ const FeatureScreen = () => {
             >
               <TextField
                 id="outlined-password-input"
-                label="Enter Project Name"
+                label="Enter Feature Name"
                 type="text"
-                fullWidth
+                fullWidth  value={title || ""}
+                name="title"
+                required
+                onChange={(e) => setTitle(e.target.value)}
               />
-              <Button variant="contained" sx={{ paddingBlock: "1.5rem" }}>
+              <Button type="submit" variant="contained" sx={{ paddingBlock: "1.5rem" }} onClick={handleSubmit}>
                 Add
               </Button>
             </Box>
             <Box sx={{ width: "85%", height: "60%", display: "flex",alignItems: "center", justifyContent:"center"}}>
              <List sx={{ width: "90%", height: "60%", display: "flex",alignItems: "center", justifyContent:"center", flexDirection:"column"}}>
-              {/* { */}
-                <FeatureList/>
-                <FeatureList/>
-                <FeatureList/>
-                <FeatureList/>
-              {/* } */}
+             {
+              dataFeature.map((feature, index) => (
+                <FeatureList
+                  key={index}
+                  index={index}
+                  feature={feature}
+                  project_id={_id}
+                />
+              ))
+             }
              </List>
             </Box>
             <Box
@@ -102,11 +159,15 @@ const FeatureScreen = () => {
             >
                <TextField
                 id="outlined-password-input"
-                label="Update Project Name"
+                label="Update Feature Name"
                 type="text"
                 fullWidth
+                value={editTitle || ""}
+                name="editTitle"
+                required
+                onChange={(e) => setEditTitle(e.target.value)}
               />
-              <Button variant="contained" sx={{ paddingBlock: "1.5rem" }}>
+              <Button type="submit" variant="contained" sx={{ paddingBlock: "1.5rem" }}  onClick={handleUpdate}>
                 Edit
               </Button>
             </Box>

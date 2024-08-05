@@ -8,7 +8,7 @@ import { RiEditFill } from "react-icons/ri";
 
 const ProjectScreen = () => {
   const { projectData , edit} = useSelector((state) => state.project);
-  console.log(projectData);
+  // console.log(projectData);
 
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
@@ -44,7 +44,7 @@ const ProjectScreen = () => {
     }
   };
   useEffect(() => {
-    setEditTitle(edit.project.title);
+    setEditTitle(edit?.project?.title);
   }, [edit]);
 
   return (

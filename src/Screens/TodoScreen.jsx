@@ -1,8 +1,61 @@
 import { Box, Button, List, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TodoList from "../Components/TodoScreen/TodoList";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { todoCreate, todoUpdate } from "../Redux/Todos/todoSlice";
+import { RiEditFill } from "react-icons/ri";
+import { FiPlusCircle } from "react-icons/fi";
 
 const TodoScreen = () => {
+  const { todoData, edit } = useSelector((state) => state.todo);
+  const dispatch = useDispatch();
+  const { _id, _Feaid } = useParams();
+
+  const dataTodo = todoData?.filter((item) => {
+    if (item.feature_id == _Feaid && item.project_id == _id) {
+      return item;
+    }
+  });
+
+  // Todo Create And Update
+  const [title, setTitle] = useState();
+  const [editTitle, setEditTitle] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!title) {
+      alert("Title is mandatory!!");
+    } else {
+      dispatch(
+        todoCreate({
+          _id: crypto.randomUUID(),
+          title: title,
+          feature_id: _Feaid,
+          project_id: _id,
+        })
+      );
+      setTitle("");
+    }
+  };
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    if (!editTitle) {
+      alert("Title is mandatory!!");
+    } else {
+      dispatch(
+        todoUpdate({
+          _id: edit.todo._id,
+          title: editTitle,
+          project_id: _id,
+          feature_id: _Feaid,
+        })
+      );
+      setEditTitle("");
+    }
+  };
+  useEffect(() => {
+    setEditTitle(edit?.todo.title);
+  }, [edit]);
   return (
     <Box
       sx={{
@@ -73,23 +126,47 @@ const TodoScreen = () => {
             >
               <TextField
                 id="outlined-password-input"
-                label="Enter Project Name"
+                label="Enter Todo Name"
                 type="text"
                 fullWidth
+                value={title || ""}
+                name="title"
+                required
+                onChange={(e) => setTitle(e.target.value)}
+                sx={{padding:"none"}}
               />
-              <Button variant="contained" sx={{ paddingBlock: "1.5rem" }}>
-                Add
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{ paddingBlock: "1.5rem"}}
+                onClick={handleSubmit}
+              >
+                <FiPlusCircle style={{ fontSize: "1.5rem" }} />
               </Button>
             </Box>
-            <Box sx={{ width: "85%", height: "60%", display: "flex",alignItems: "center", justifyContent:"center"}}>
-             <List sx={{ width: "90%", height: "60%", display: "flex",alignItems: "center", justifyContent:"center", flexDirection:"column"}}>
-              {/* { */}
-             <TodoList/>
-             <TodoList/>
-             <TodoList/>
-             <TodoList/>
-              {/* } */}
-             </List>
+            <Box
+              sx={{
+                width: "85%",
+                height: "60%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <List
+                sx={{
+                  width: "90%",
+                  height: "60%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
+              >
+                {dataTodo.map((todo, index) => (
+                  <TodoList key={index} todo={todo} index={index} />
+                ))}
+              </List>
             </Box>
             <Box
               sx={{
@@ -100,14 +177,23 @@ const TodoScreen = () => {
                 justifyContent: "center",
               }}
             >
-               <TextField
+              <TextField
                 id="outlined-password-input"
-                label="Update Project Name"
+                label="Update Todo Name"
                 type="text"
                 fullWidth
+                value={editTitle || ""}
+                name="editTitle"
+                required
+                onChange={(e) => setEditTitle(e.target.value)}
               />
-              <Button variant="contained" sx={{ paddingBlock: "1.5rem" }}>
-                Edit
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{ paddingBlock: "1.5rem" }}
+                onClick={handleUpdate}
+              >
+                <RiEditFill style={{ fontSize: "1.5rem" }} />
               </Button>
             </Box>
           </Box>

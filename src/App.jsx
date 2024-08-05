@@ -6,12 +6,16 @@ import UserDashboard from './Screens/UserDashboard'
 import ProjectScreen from './Screens/ProjectScreen'
 import FeatureScreen from './Screens/FeatureScreen'
 import TodoScreen from './Screens/TodoScreen'
+import RegisterScreen from './Screens/RegisterScreen'
+import LoginScreen from './Screens/LoginScreen'
 const App = () => {
   return (
   <Router>
   {/* <Navbar/> */}
   <Routes>
     <Route path='/' element={<HomeScreen/>}/>
+    <Route path='/register' element={<RegisterScreen/>}/>
+    <Route path='/login' element={<LoginScreen/>}/>
     <Route path='/userdashboard' element={<UserDashboard/>}/>
     <Route path="/projects" element={<ProjectScreen/>}/>
     <Route path="/projects/:_id/feature/" element={<FeatureScreen/>}/>

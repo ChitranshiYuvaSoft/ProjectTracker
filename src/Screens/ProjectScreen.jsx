@@ -1,6 +1,6 @@
 import { Box, Button, List, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import ProjectList from "../Components/ProjectScreen.jsx/ProjectList";
+import ProjectList from "../Components/ProjectScreen/ProjectList";
 import { useDispatch, useSelector } from "react-redux";
 import { projectCreate, projectUpdate } from "../Redux/Projects/projectSlice";
 import { FiPlusCircle } from "react-icons/fi";

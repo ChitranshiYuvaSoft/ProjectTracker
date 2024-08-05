@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import { Box, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const HomeScreen = () => {
+
+  const {user} = useSelector(state => state.auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!user){
+      navigate('/login');
+    }
+  }, [user])
   return (
     <>
       <Navbar />

@@ -125,20 +125,28 @@ const TodoScreen = () => {
               }}
             >
               <TextField
-                id="outlined-password-input"
+                variant="filled"
                 label="Enter Todo Name"
                 type="text"
                 fullWidth
                 value={title || ""}
                 name="title"
                 required
+                sx={{
+                  "& .MuiInputBase-input": {
+                    fontSize: "1.5rem", height: "1.2rem" // Change this to your desired font size
+                  },
+                  "& .MuiInputLabel-root": {
+                    fontSize: "1rem", // Change this to your desired label font size
+                  },
+                }}
+                // className="fs-5 fw-bold"
                 onChange={(e) => setTitle(e.target.value)}
-                sx={{padding:"none"}}
               />
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ paddingBlock: "1.5rem"}}
+                sx={{ paddingBlock: "1.5rem" }}
                 onClick={handleSubmit}
               >
                 <FiPlusCircle style={{ fontSize: "1.5rem" }} />

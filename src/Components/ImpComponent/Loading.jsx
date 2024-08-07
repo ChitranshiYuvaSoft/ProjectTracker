@@ -13,7 +13,15 @@ const Loading = () => {
         flexDirection: "column",
       }}
     >
-        <Typography variant="h3">Loading</Typography>
+ {/* From Uiverse.io by mobinkakei */}
+      <div class="wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+      </div>
     </Box>
   );
 };

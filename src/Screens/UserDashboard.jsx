@@ -20,14 +20,25 @@ import UserProfile from "../Components/UserDashboard/UserProfile";
 import { Button } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logOutUser } from "../Redux/auth/authSlice";
+// import { logOutUser } from "../Redux/auth/authSlice";
 
 const drawerWidth = 300;
 
 const UserDashboard = () => {
 
-  const navigate = useNavigate()
+  const {user} = useSelector(state => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+
+  React.useEffect(() => {
+    if(!user){
+      navigate('/login');
+    }
+  }, [user])
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -43,6 +54,11 @@ const UserDashboard = () => {
       setMobileOpen(!mobileOpen);
     }
   };
+
+  const logout = () => {
+    alert("Logout")
+    dispatch(logOutUser());
+  }
 
   const drawer = (
     <div>
@@ -179,6 +195,7 @@ const UserDashboard = () => {
                 color:"white",
                 borderBlock:"1px solid white"
               }}
+              onClick={logout}
             >
               LogOut
             </Button>

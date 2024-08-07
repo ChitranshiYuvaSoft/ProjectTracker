@@ -1,56 +1,10 @@
-import { Box, Button, List, TextField, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import ProjectList from "../Components/ProjectScreen/ProjectList";
-import { useDispatch, useSelector } from "react-redux";
-import { projectCreate, projectUpdate } from "../Redux/Projects/projectSlice";
-import { FiPlusCircle } from "react-icons/fi";
-import { RiEditFill } from "react-icons/ri";
-// import ProjectUI from "../Components/ImpComponent/ProjectComponent/ProjectUI";
+import { Box, Button, TextField, Typography } from '@mui/material'
+import React from 'react'
+import { FiPlusCircle } from 'react-icons/fi'
 
-const ProjectScreen = () => {
-  const { projectData , edit} = useSelector((state) => state.project);
-  // console.log(projectData);
-
-  const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
-  const [editTitle, setEditTitle] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!title) {
-      alert("Title is mandatory!!");
-    } else {
-      dispatch(
-        projectCreate({
-          _id: crypto.randomUUID(),
-          title,
-        })
-      );
-      setTitle("");
-    }
-  };
-
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    if (!editTitle) {
-      alert("Title is mandatory!!");
-    } else {
-      dispatch(
-        projectUpdate({
-          _id: edit.project._id,
-          title: editTitle,
-        })
-      );
-      setEditTitle("");
-    }
-  };
-  useEffect(() => {
-    setEditTitle(edit?.project?.title);
-  }, [edit]);
-
-  const heading = "project";
+const ProjectUI = ({heading}) => {
   return (
-<Box
+    <Box
       sx={{
         width: "100vw",
         height: "100vh",
@@ -82,8 +36,8 @@ const ProjectScreen = () => {
             justifyContent: "center",
           }}
         >
-          <Typography variant="h3" textAlign="center" fontWeight={"bold"}>
-            PROJECTS
+          <Typography variant="h3" textAlign="center" fontWeight={"bold"} textTransform={"uppercase"}>
+           {heading}
           </Typography>
         </Box>
 
@@ -136,7 +90,7 @@ const ProjectScreen = () => {
                 <FiPlusCircle style={{fontSize : "1.5rem"}} />
               </Button>
             </Box>
-            <Box
+            {/* <Box
               sx={{
                 width: "85%",
                 height: "60%",
@@ -161,8 +115,8 @@ const ProjectScreen = () => {
                   <ProjectList key={project._id} project={project} />
                 ))}
               </List>
-            </Box>
-            <Box
+            </Box> */}
+            {/* <Box
               sx={{
                 width: "85%",
                 height: "25%",
@@ -184,11 +138,12 @@ const ProjectScreen = () => {
               <Button variant="contained" sx={{ paddingBlock: "1.5rem" }} onClick={handleUpdate}>
               <RiEditFill  style={{fontSize : "1.5rem"}} />
               </Button>
-            </Box>
+            </Box> */}
           </Box>
         </Box>
       </Box>
-    </Box>  );
-};
+    </Box>
+    )
+}
 
-export default ProjectScreen;
+export default ProjectUI

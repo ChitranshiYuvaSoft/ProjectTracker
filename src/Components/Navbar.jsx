@@ -80,7 +80,7 @@ const Navbar = () => {
           </Typography>
           <Box
             sx={{
-              width: "25%",
+              width: "15%",
               height: "100%",
               display: "flex",
               alignItems: "center",
@@ -90,9 +90,8 @@ const Navbar = () => {
             {!isMobile && (
               //   <Box sx={{ display: 'flex'}}>
               <>
-                { user ? (
-                  <>
-                  no Data</>
+                {user ? (
+                  <></>
                 ) : (
                   <>
                     <Link to={"/register"} style={{ color: "white" }}>
@@ -110,7 +109,7 @@ const Navbar = () => {
               </>
               //   </Box>
             )}
-            <FormControlLabel
+            {/* <FormControlLabel
               control={
                 <Switch
                   checked={darkMode}
@@ -120,7 +119,7 @@ const Navbar = () => {
                   color="white"
                 />
               }
-            />
+            /> */}
           </Box>
         </Toolbar>
       </AppBar>

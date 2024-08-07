@@ -1,21 +1,39 @@
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import React from "react";
+
+import React, { useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import FormComponent from "../Components/LoginScreen/FormComponent";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Zoom } from "react-toastify";
 import Loading from "../Components/ImpComponent/Loading";
 
 const LoginScreen = () => {
-  const { isLoading } = useSelector((state) => state.auth);
+  const { user, isSuccess, isLoading, isError, message } = useSelector(
+    (state) => state.auth
+  );
 
-  // if(isLoading){
-  //   return (
-  //     <Box></Box>
-  //   )
-  // }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && isSuccess) {
+      navigate("/userdashboard");
+    }
+    if (isError && message) {
+      toast.error(message, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Zoom,
+      });
+    }
+  }, [isSuccess, user]);
 
   return (
     <>
@@ -52,9 +70,7 @@ const LoginScreen = () => {
         >
           {isLoading ? (
             <>
-              <Box sx={{ display: "flex" }}>
-                <CircularProgress style={{color : "#031D36"}}/>
-              </Box>
+              <Loading />
             </>
           ) : (
             <>
@@ -101,91 +117,13 @@ const LoginScreen = () => {
                 <Box
                   sx={{
                     width: "100%",
-                    height: "50%",
+                    height: "60%",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                 >
                   <FormComponent />
-                </Box>
-                <Box
-                  sx={{
-                    width: "90%",
-                    height: "30%",
-                    display: "flex",
-                    padding: "2rem",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: "60%",
-                      height: "50%",
-                      display: "flex",
-                      padding: "2rem",
-                      alignItems: "center",
-                      justifyContent: "space-around",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: "20%",
-                        height: "80%",
-                        display: "flex",
-                        padding: "2rem",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "50%",
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <GoogleIcon fontSize={"large"} />
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "20%",
-                        height: "80%",
-                        display: "flex",
-                        padding: "2rem",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "50%",
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <FacebookIcon fontSize={"large"} />
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "20%",
-                        height: "80%",
-                        display: "flex",
-                        padding: "2rem",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "50%",
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <GitHubIcon fontSize={"large"} />
-                    </Box>
-                  </Box>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    sx={{
-                      paddingBlock: "1rem",
-                      rounded: "0",
-                      backgroundColor: "#031D36",
-                      fontSize: "1.2rem",
-                      marginTop: "1rem",
-                    }}
-                  >
-                    Create Account
-                  </Button>
                 </Box>
               </Box>
             </>

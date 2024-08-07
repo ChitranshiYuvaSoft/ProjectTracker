@@ -21,9 +21,9 @@ const featureSlice = createSlice({
     featureRemoveByProject: (state, action) => {
       return {
         ...state,
-        featureData: state.featureData.filter(
-          (item) => item._id != action.payload
-        ),
+        // featureData: state.featureData.filter(
+        //   (item) => item._id != action.payload
+        // ),
         featureData: state.featureData.filter(
           (item) => item.project_id != action.payload
         ),

@@ -18,6 +18,7 @@ const TodoList = ({ todo, index }) => {
   const handleCheck = () => {
     setIsChecked(true);
   };
+  console.log(isChecked)
   return (
     <>
       <ListItem

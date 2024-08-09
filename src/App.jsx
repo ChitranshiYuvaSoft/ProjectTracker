@@ -12,6 +12,7 @@ import FeatureScreen from "./Screens/FeatureScreen";
 import TodoScreen from "./Screens/TodoScreen";
 import RegisterScreen from "./Screens/RegisterScreen";
 import LoginScreen from "./Screens/LoginScreen";
+import GoogleAuth from "./googleAuth/GoogleAuth";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Router>
         {/* <Navbar/> */}
         <Routes>
+          <Route path='/google' element={<GoogleAuth/>}/>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/login" element={<LoginScreen />} />

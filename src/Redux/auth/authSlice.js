@@ -11,7 +11,7 @@ import authService from "./authService";
 
 const initialState = {
   user: null,
-  isSuccess: true,
+  isSuccess: false,
   isLoading: false,
   isError: false,
   message: "Something Went Wrong!!",
@@ -81,7 +81,6 @@ export const login = createAsyncThunk("LOGIN/USER", async(formData) => {
         console.log(error.message);
     }
 })
-
 
 export const logOutUser = createAsyncThunk("LOGOUT/USER", async() => {
     localStorage.setItem("user" , "")

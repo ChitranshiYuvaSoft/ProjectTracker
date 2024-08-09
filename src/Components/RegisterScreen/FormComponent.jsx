@@ -8,6 +8,8 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { register } from "../../Redux/auth/authSlice";
 import { toast } from "react-toastify";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is Required"),
@@ -17,7 +19,6 @@ const validationSchema = Yup.object().shape({
 });
 
 const FormComponent = () => {
-
   const dispatch = useDispatch();
 
   const [initialValue, setInitialValue] = useState({
@@ -33,6 +34,44 @@ const FormComponent = () => {
       dispatch(register(values));
       setSubmitting(false);
     }, 1000);
+  };
+
+ 
+  const handleSuccess = async (response) => {
+    try {
+      const decoded = jwtDecode(response.credential);
+      console.log(decoded)
+      const googleValues = {
+        name: decoded.name,
+        email: decoded.email,
+        profile: decoded.picture
+      };
+      dispatch(register(googleValues));
+      console.log(dispatch(register(googleValues)));
+      toast.success("Registered successfully with Google!");
+    } catch (error) {
+      console.error("Google login failed:", error);
+      toast.error("Google login failed");
+    }
+    // console.log(response)
+  };
+
+  // const handleSuccess = (
+  //   googleValues,
+  //   credentialResponse,
+  //   { setSubmitting }
+  // ) => {
+  //   const credentialResponseDecoded = jwtDecode(credentialResponse.credential);
+  //   setTimeout(() => {
+  //     dispatch(register(googleValues));
+  //     console.log( dispatch(register(googleValues)), "data")
+  //     setSubmitting(false);
+  //   }, 1000);
+  //   console.log(credentialResponseDecoded);
+  // };
+
+  const handleError = () => {
+    console.log("Login Failed");
   };
 
   return (
@@ -111,59 +150,66 @@ const FormComponent = () => {
                   flexDirection: "column",
                 }}
               >
-             <Box
+                <Box
+                  sx={{
+                    width: "60%",
+                    height: "50%",
+                    display: "flex",
+                    padding: "2rem",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Box
                     sx={{
-                      width: "60%",
-                      height: "50%",
+                      width: "20%",
+                      height: "80%",
                       display: "flex",
                       padding: "2rem",
                       alignItems: "center",
-                      justifyContent: "space-around",
+                      justifyContent: "center",
+                      borderRadius: "50%",
+                      backgroundColor: "white",
                     }}
                   >
-                    <Box
-                      sx={{
-                        width: "20%",
-                        height: "80%",
-                        display: "flex",
-                        padding: "2rem",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "50%",
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <GoogleIcon fontSize={"large"} />
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "20%",
-                        height: "80%",
-                        display: "flex",
-                        padding: "2rem",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "50%",
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <FacebookIcon fontSize={"large"} />
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "20%",
-                        height: "80%",
-                        display: "flex",
-                        padding: "2rem",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "50%",
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <GitHubIcon fontSize={"large"} />
-                    </Box>
+                    {/* <GoogleIcon fontSize={"large"} 
+                       onClick={handleSuccess}
+                      //  onError={handleError} 
+                       /> */}
+                    <GoogleLogin
+                      onSuccess={handleSuccess}
+                      onError={handleError}
+                    />
                   </Box>
+                  <Box
+                    sx={{
+                      width: "20%",
+                      height: "80%",
+                      display: "flex",
+                      padding: "2rem",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "50%",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    <FacebookIcon fontSize={"large"} />
+                  </Box>
+                  <Box
+                    sx={{
+                      width: "20%",
+                      height: "80%",
+                      display: "flex",
+                      padding: "2rem",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "50%",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    <GitHubIcon fontSize={"large"} />
+                  </Box>
+                </Box>
               </Box>
               <Button
                 variant="contained"

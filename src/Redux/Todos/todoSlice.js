@@ -39,7 +39,7 @@ const todoSlice = createSlice({
     todoCreate: (state, action) => {
       return {
         ...state,
-        todoData: [action.payload, ...state.todoData],
+        todoData: [...state.todoData, action.payload],
       };
     },
     todoEdit: (state, action) => {

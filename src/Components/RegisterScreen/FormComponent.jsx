@@ -36,41 +36,24 @@ const FormComponent = () => {
     }, 1000);
   };
 
- 
-  const handleSuccess = async (response) => {
+   const handleSuccess = async (response) => {
     try {
       const decoded = jwtDecode(response.credential);
-      console.log(decoded)
-      const googleValues = {
+      const userData = {
         name: decoded.name,
         email: decoded.email,
-        profile: decoded.picture
+        profile: decoded.picture,
+        password: "123456", // Use a default password or generate one
       };
-      dispatch(register(googleValues));
-      console.log(dispatch(register(googleValues)));
+      await dispatch(register(userData)).unwrap();
       toast.success("Registered successfully with Google!");
     } catch (error) {
       console.error("Google login failed:", error);
       toast.error("Google login failed");
     }
-    // console.log(response)
   };
 
-  // const handleSuccess = (
-  //   googleValues,
-  //   credentialResponse,
-  //   { setSubmitting }
-  // ) => {
-  //   const credentialResponseDecoded = jwtDecode(credentialResponse.credential);
-  //   setTimeout(() => {
-  //     dispatch(register(googleValues));
-  //     console.log( dispatch(register(googleValues)), "data")
-  //     setSubmitting(false);
-  //   }, 1000);
-  //   console.log(credentialResponseDecoded);
-  // };
-
-  const handleError = () => {
+   const handleError = () => {
     console.log("Login Failed");
   };
 
@@ -176,10 +159,14 @@ const FormComponent = () => {
                        onClick={handleSuccess}
                       //  onError={handleError} 
                        /> */}
-                    <GoogleLogin
-                      onSuccess={handleSuccess}
-                      onError={handleError}
-                    />
+                   <GoogleLogin
+                    type="submit"
+                    onSuccess={handleSuccess}
+                    onError={handleError}
+                    shape="pill"
+                    type="icon"
+                    size="large"
+                              />
                   </Box>
                   <Box
                     sx={{

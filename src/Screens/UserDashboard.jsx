@@ -58,6 +58,7 @@ const UserDashboard = () => {
   const logout = () => {
     alert("Logout")
     dispatch(logOutUser());
+    navigate('/login')
   }
 
   const drawer = (

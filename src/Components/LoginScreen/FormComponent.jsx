@@ -7,6 +7,9 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import * as Yup from "yup";
 import { login } from "../../Redux/auth/authSlice";
 import { useDispatch } from "react-redux";
+import { GoogleLogin } from "@react-oauth/google";
+import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email is required"),
@@ -14,27 +17,50 @@ const validationSchema = Yup.object().shape({
 });
 
 const FormComponent = () => {
-
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [initialValue, setInitialValue] = useState({
     email: "",
     password: "",
   });
 
-  console.log(initialValue)
+  console.log(initialValue);
 
   const handleSubmit = (values, { setSubmitting }) => {
     setTimeout(() => {
       dispatch(login(values));
       setSubmitting(false);
     }, 1000);
-  
+  };
+
+  const handleSuccess = async (response) => {
+    try {
+      const decoded = jwtDecode(response.credential);
+      // console.log(decoded);
+      const userData = {
+        // name: decoded.name,
+        email: decoded.email,
+        password: "123456", // Use a default password or generate one
+      };
+      await dispatch(login(userData)).unwrap();
+      toast.success("Registered successfully with Google!");
+    } catch (error) {
+      console.error("Google login failed:", error);
+      toast.error("Google login failed");
+    }
+  };
+
+  const handleError = () => {
+    console.log("Login Failed");
   };
 
   return (
     <>
-      <Formik initialValues={initialValue} validationSchema={validationSchema} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValue}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
         {({ isSubmitting }) => (
           <Form
             style={{
@@ -93,7 +119,15 @@ const dispatch = useDispatch();
                     backgroundColor: "white",
                   }}
                 >
-                  <GoogleIcon fontSize={"large"} />
+                  {/* <GoogleIcon fontSize={"large"} /> */}
+                  <GoogleLogin
+                    type="submit"
+                    onSuccess={handleSuccess}
+                    onError={handleError}
+                    shape="pill"
+                    type="icon"
+                    size="large"
+                              />
                 </Box>
                 <Box
                   sx={{

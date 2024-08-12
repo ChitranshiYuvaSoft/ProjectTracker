@@ -75,12 +75,16 @@ export const register = createAsyncThunk("REGISTER/USER", async(formData) => {
 });
 
 export const login = createAsyncThunk("LOGIN/USER", async(formData) => {
-    try {
+  // console.log(action.payload)  
+  console.log(formData)
+  try {
        return await authService.loginUser(formData);
     } catch (error) {
         console.log(error.message);
     }
 })
+
+
 
 export const logOutUser = createAsyncThunk("LOGOUT/USER", async() => {
     localStorage.setItem("user" , "")

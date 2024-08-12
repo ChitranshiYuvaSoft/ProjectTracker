@@ -1,7 +1,10 @@
 import { Box, List, Typography } from "@mui/material";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const UserProfile = () => {
+  const {user} = useSelector(state => state.auth);
+  console.log(user, "formData")
   return (
     <>
       <List
@@ -37,7 +40,7 @@ const UserProfile = () => {
           }}
         >
           <Typography variant="h5" sx={{ fontWeight: "bold" , marginLeft:"1rem",color:"#B1BDC7"}}>
-            Anuj Singh
+           {user.name}
           </Typography>
         </Box>
       </List>
@@ -62,7 +65,7 @@ const UserProfile = () => {
           }}
         >
           <Typography variant="h6" sx={{color:"#B1BDC7"}}>
-            <span style={{ fontWeight: "550"}}>Email :</span> anuj23@gmail.com
+            <span style={{ fontWeight: "550"}}>Email :</span> {user.email}
           </Typography>
           <Typography variant="h6" sx={{color:"#B1BDC7"}}>
             <span style={{ fontWeight: "550" }}>Phone :</span> +91 9676343453

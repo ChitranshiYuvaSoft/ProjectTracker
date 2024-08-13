@@ -13,6 +13,8 @@ import Footer from "../Components/HomeScreen/Footer";
 import RatingUser from "../Components/HomeScreen/RatingUser";
 import MarqueeData from "./MarqueeData";
 import MapSec from "../Components/HomeScreen/MapSec";
+import Banner3 from "../Components/HomeScreen/Banner3";
+import { sliderImg } from "../Data/data";
 
 const HomeScreen = () => {
   const { user } = useSelector((state) => state.auth);
@@ -22,75 +24,41 @@ const HomeScreen = () => {
       navigate("/login");
     }
   }, [user]);
+
+ 
+
   return (
     <>
       <Navbar />
-      <Box
-        sx={{
-          width: "100%",
-          height: "auto",
-          backgroundColor: "#D5E2EE",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-around",
-          flexDirection: "column",
-        }}
-      >
-        <Box
-          sx={{
-            width: "100%",
-            height: "40rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "red",
-            marginBottom: "3rem",
-          }}
-        >
+      <Box className="homeScreen">
+        <Box className="homeSlider">
           <Swiper
             modules={[Autoplay, FreeMode, Scrollbar]}
             spaceBetween={50}
             slidesPerView={1}
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log("slide change")}
-            style={{ height: "100%", backgroundColor: "gray" }}
+            style={{ height: "100%" }}
           >
-            <SwiperSlide
-              className="d-flex align-items-center justify-content-center"
-              style={{ width: "100%", height: "100%" }}
-            >
-              <img
-                src="https://www.nokiasaudi.com/assets/script/mlib-uploads/full/project-management-slider-5a37c952d94f7.jpg"
-                alt="moImg"
-                width={"100%"}
-                height={"100%"}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://t3.ftcdn.net/jpg/04/51/39/92/360_F_451399234_4ue5KX3bU2XKlgqFCJPd3Tsgv6cuLDLM.jpg"
-                alt="moImg"
-                width={"100%"}
-                height={"100%"}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="https://smawins.com/wp-content/uploads/2022/02/ProjectManagement.jpg"
-                alt="moImg"
-                width={"100%"}
-                height={"100%"}
-              />
-            </SwiperSlide>
-            ...
+            {sliderImg.map((item, index) => (
+              <SwiperSlide
+                key={index}
+                className="d-flex align-items-center justify-content-center"
+                style={{ width: "100%", height: "100%" }}
+              >
+                <img src={item} alt="noImg" width={"100%"} height={"100%"} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </Box>
         <MarqueeData />
 
         <Banner />
         <Banner2 />
-        <Banner />
-        <MapSec />
+        <Banner3 />
+        <Box className="mapSec">
+          <MapSec />
+        </Box>
         <RatingUser />
         <Footer />
       </Box>

@@ -1,7 +1,6 @@
 import { Box, Button } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import * as Yup from "yup";
@@ -36,7 +35,7 @@ const FormComponent = () => {
     }, 1000);
   };
 
-   const handleSuccess = async (response) => {
+  const handleSuccess = async (response) => {
     try {
       const decoded = jwtDecode(response.credential);
       const userData = {
@@ -53,7 +52,7 @@ const FormComponent = () => {
     }
   };
 
-   const handleError = () => {
+  const handleError = () => {
     console.log("Login Failed");
   };
 
@@ -79,120 +78,52 @@ const FormComponent = () => {
             <Field
               type="text"
               name="name"
-              // value={name}
-              // onchange={handleChange}
               placeholder="Your Full Name"
-              className="form-control py-3 fs-5 rounded-0"
+              className="fieldStyle form-control"
             />
             <ErrorMessage name="name" component="div" />
             <Field
               type="text"
               name="userName"
               placeholder="Username"
-              // value={userName}
-              // onchange={handleChange}
-              className="form-control py-3 fs-5 rounded-0"
+              className="fieldStyle form-control"
             />
             <ErrorMessage name="userName" component="div" />
             <Field
               type="email"
               name="email"
-              // value={email}
-              // onchange={handleChange}
               placeholder="Email Address"
-              className="form-control py-3 fs-5 rounded-0"
+              className="fieldStyle form-control"
             />
             <ErrorMessage name="email" component="div" />
             <Field
               type="password"
               name="password"
-              // value={password}
-              // onchange={handleChange}
               placeholder="Enter Password"
-              className="form-control py-3 fs-5 rounded-0"
+              className="fieldStyle form-control"
             />
             <ErrorMessage name="password" component="div" />
 
-            <Box
-              sx={{
-                width: "100%",
-                height: "30%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Box
-                sx={{
-                  width: "100%",
-                  height: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "60%",
-                    height: "50%",
-                    display: "flex",
-                    padding: "2rem",
-                    alignItems: "center",
-                    justifyContent: "space-around",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: "20%",
-                      height: "80%",
-                      display: "flex",
-                      padding: "2rem",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderRadius: "50%",
-                      backgroundColor: "white",
-                    }}
-                  >
-                    {/* <GoogleIcon fontSize={"large"} 
-                       onClick={handleSuccess}
-                      //  onError={handleError} 
-                       /> */}
-                   <GoogleLogin
-                    type="submit"
-                    onSuccess={handleSuccess}
-                    onError={handleError}
-                    shape="pill"
-                    type="icon"
-                    size="large"
-                              />
+            <Box className="googleSection">
+              <Box className="googleSec">
+                <Box className="mainGoogleSec">
+                  <Box className="googleBtn">
+                    <GoogleLogin
+                      type="submit"
+                      onSuccess={handleSuccess}
+                      onError={handleError}
+                      shape="pill"
+                      type="icon"
+                      size="large"
+                    />
                   </Box>
                   <Box
-                    sx={{
-                      width: "20%",
-                      height: "80%",
-                      display: "flex",
-                      padding: "2rem",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderRadius: "50%",
-                      backgroundColor: "white",
-                    }}
+                   className="googleBtn"
                   >
                     <FacebookIcon fontSize={"large"} />
                   </Box>
                   <Box
-                    sx={{
-                      width: "20%",
-                      height: "80%",
-                      display: "flex",
-                      padding: "2rem",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderRadius: "50%",
-                      backgroundColor: "white",
-                    }}
+                    className="googleBtn"
                   >
                     <GitHubIcon fontSize={"large"} />
                   </Box>
@@ -202,13 +133,21 @@ const FormComponent = () => {
                 variant="contained"
                 fullWidth
                 type="submit"
+                className="submitBtn"
                 sx={{
                   paddingBlock: "1rem",
                   rounded: "0",
                   backgroundColor: "#031D36",
                   fontSize: "1.2rem",
                   marginTop: "1rem",
+                 
+                    "&:hover": {
+                      backgroundColor: "#67a4dd",
+                      fontWeight: "bold",
+                      color: "black"
+                    }
                 }}
+                
               >
                 Create Account
               </Button>

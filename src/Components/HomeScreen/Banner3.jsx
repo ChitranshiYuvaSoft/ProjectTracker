@@ -1,31 +1,19 @@
-
-
-
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const Banner3 = () => {
   return (
-    <Box className="bannerSec bannerChange">
-         <Box className="bannerRight">
-        <Box className="banner">
-          <img
-  src= "https://static.vecteezy.com/system/resources/previews/007/440/373/non_2x/project-manager-working-and-update-tasks-with-milestones-progress-planning-and-gantt-chart-scheduling-diagram-business-working-with-smart-phone-tablet-and-laptop-in-office-photo.jpg"            alt="noImg"
-            width={"100%"}
-            height={"100%"}
-          />
-        </Box>
-      </Box>
+    <Box className="bannerSec">
       <Box className="bannerLeft">
-   
         <Box className="banner">
           <Typography
             variant="h2"
-            align="start"
+            textAlign={"center"}
+            // align="start"
             fontWeight={"bold"}
             sx={{ marginBottom: "2rem" }}
           >
-           How to create New Project?
+            Project Management
           </Typography>
           <Typography variant="h5" align="start">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
@@ -53,7 +41,16 @@ const Banner3 = () => {
           </Typography>
         </Box>
       </Box>
-  
+      <Box className="bannerRight">
+        <Box className="banner">
+          <img
+            src="https://img.freepik.com/free-vector/project-management-business-multitasking-concept-flat-line-art-icons_126523-2192.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1723507200&semt=ais_hybrid"
+            alt="noImg"
+            width={"100%"}
+            height={"100%"}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 };

@@ -38,62 +38,19 @@ const LoginScreen = () => {
   return (
     <>
       <Navbar />
-      <Box sx={{ width: "100%", height: "90vh", display: "flex" }}>
-        <Box
-          sx={{
-            width: "60%",
-            height: "100%",
-            backgroundColor: "teal",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src="./Image/registerBg.webp"
-            alt="noImg"
-            width={"100%"}
-            height={"100%"}
-            style={{ boxShadow: "inset 0rem 0rem 10rem #FFFFFF" }}
-          />
+      <Box className="loginScreen">
+        <Box className="authSec">
+          <img src="./Image/registerBg.webp" alt="noImg" />
         </Box>
-        <Box
-          sx={{
-            width: "40%",
-            height: "100%",
-            backgroundColor: "#A4C7E7",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "inset 0rem 0rem 10rem #FFFFFF",
-          }}
-        >
+        <Box className="authFormSec">
           {isLoading ? (
             <>
               <Loading />
             </>
           ) : (
             <>
-              <Box
-                sx={{
-                  width: "95%",
-                  height: "80%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "20%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
+              <Box className="authForm">
+                <Box className="authLogin">
                   <Typography
                     variant="h4"
                     fontWeight={"bold"}
@@ -114,15 +71,7 @@ const LoginScreen = () => {
                     It's Completely Free
                   </Typography>
                 </Box>
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "60%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
+                <Box className="formComponentSec">
                   <FormComponent />
                 </Box>
               </Box>

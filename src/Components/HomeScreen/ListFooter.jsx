@@ -30,125 +30,53 @@ const footerListData = [
 const ListFooter = () => {
   return (
     <>
-      {footerListData.map((item) => (
-        <List
-          key={item.index}
-          sx={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            textAlign: "center",
-          }}
-        >
+      {footerListData.map((item, index) => (
+        <List className="listSec" key={index}>
           <ListItem
+            className="listItemSec"
             sx={{
-              width: "100%",
-              textAlign: "center",
               fontSize: "1.6rem",
               fontWeight: "bold",
-              display: "flex",
-              alignItems: "center",
               justifyContent: "center",
             }}
           >
             {item.heading}
           </ListItem>
-          <ListItem
-            sx={{
-              width: "100%",
-              textAlign: "center",
-              fontSize: "1.3rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <ListItem className="listItemSec" sx={{ justifyContent: "center" }}>
             {item.first}
           </ListItem>
-          <ListItem
-            sx={{
-              width: "100%",
-              textAlign: "center",
-              fontSize: "1.3rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {item.second}
-          </ListItem>
-          <ListItem
-            sx={{
-              width: "100",
-              textAlign: "center",
-              fontSize: "1.3rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {item.thired}
-          </ListItem>
-          <ListItem
-            sx={{
-              width: "100%",
-              textAlign: "center",
-              fontSize: "1.3rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {item.fourth}
-          </ListItem>
+          <ListItem className="listItemSec" sx={{ justifyContent: "center" }}>{item.second}</ListItem>
+          <ListItem className="listItemSec" sx={{ justifyContent: "center" }}>{item.thired}</ListItem>
+          <ListItem className="listItemSec" sx={{ justifyContent: "center" }}>{item.fourth}</ListItem>
         </List>
       ))}
-      <List
-        sx={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          textAlign: "center",
-        }}
-      >
+      <List className="listSec">
         <ListItem
+          className="listItemSec"
           sx={{
-            width: "100%",
-            textAlign: "center",
-            fontSize: "1.3rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
             fontSize: "1.6rem",
             fontWeight: "bold",
+            // display:"flex",
+            // alignItems:"center",
+            justifyContent: "center",
           }}
         >
           Social Site
         </ListItem>
         <ListItem
+          className="listItemSec"
           sx={{
-            width: "25%",
-            textAlign: "center",
             display: "flex",
             fontSize: "2.5rem",
-            alignItems: "center",
             justifyContent: "center",
           }}
         >
           {<FaGithub />}
         </ListItem>
         <ListItem
+          className="listItemSec"
           sx={{
-            width: "25%",
-            textAlign: "center",
             display: "flex",
-            alignItems: "center",
             fontSize: "2.5rem",
             justifyContent: "center",
           }}
@@ -156,14 +84,9 @@ const ListFooter = () => {
           {<FaInstagram />}
         </ListItem>
         <ListItem
+          className="listItemSec"
           sx={{
-            width: "25%",
-            textAlign: "center",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            display: "flex",
-            alignItems: "center",
             fontSize: "2.5rem",
             justifyContent: "center",
           }}
@@ -171,11 +94,9 @@ const ListFooter = () => {
           {<FaSquareTwitter />}
         </ListItem>
         <ListItem
+          className="listItemSec"
           sx={{
-            width: "25%",
-            textAlign: "center",
             display: "flex",
-            alignItems: "center",
             fontSize: "2.5rem",
             justifyContent: "center",
           }}

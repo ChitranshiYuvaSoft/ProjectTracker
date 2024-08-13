@@ -1,11 +1,11 @@
-import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import FormComponent from "../Components/RegisterScreen/FormComponent";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {Zoom }from 'react-toastify'
+import { Zoom } from "react-toastify";
 import Loading from "../Components/ImpComponent/Loading";
 
 const RegisterScreen = () => {
@@ -29,68 +29,25 @@ const RegisterScreen = () => {
         progress: undefined,
         theme: "dark",
         transition: Zoom,
-        });
+      });
     }
   }, [isSuccess, user, isError, message]);
   return (
     <>
       <Navbar />
-      <Box sx={{ width: "100%", height: "90vh", display: "flex" }}>
-        <Box
-          sx={{
-            width: "60%",
-            height: "100%",
-            backgroundColor: "teal",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src="./Image/registerBg.webp"
-            alt="noImg"
-            width={"100%"}
-            height={"100%"}
-            style={{ boxShadow: "inset 0rem 0rem 10rem #FFFFFF" }}
-          />
+      <Box className="registerScreen">
+        <Box className="authSec">
+          <img src="./Image/registerBg.webp" alt="noImg" />
         </Box>
-        <Box
-          sx={{
-            width: "40%",
-            height: "100%",
-            backgroundColor: "#A4C7E7",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "inset 0rem 0rem 10rem #FFFFFF",
-          }}
-        >
+        <Box className="authFormSec">
           {isLoading ? (
             <>
-              <Loading/>
+              <Loading />
             </>
           ) : (
             <>
-              <Box
-                sx={{
-                  width: "95%",
-                  height: "80%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "15%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                  }}
-                >
+              <Box className="authForm">
+                <Box className="authRegister">
                   <Typography
                     variant="h4"
                     fontWeight={"bold"}
@@ -111,18 +68,9 @@ const RegisterScreen = () => {
                     It's Completely Free
                   </Typography>
                 </Box>
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "85%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
+                <Box className="formComponentSec">
                   <FormComponent />
                 </Box>
-              
               </Box>
             </>
           )}

@@ -1,7 +1,6 @@
 import { Box, Button } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import * as Yup from "yup";
@@ -77,49 +76,19 @@ const FormComponent = () => {
               type="email"
               name="email"
               placeholder="Email Address"
-              className="form-control py-3 fs-5 rounded-0"
+              className="fieldStyle form-control"
             />
             <ErrorMessage name="email" component="Box" />
             <Field
               type="password"
               name="password"
               placeholder="Enter Password"
-              className="form-control py-3 fs-5 rounded-0"
+              className="fieldStyle form-control"
             />
             <ErrorMessage name="password" component="Box" />
-            <Box
-              sx={{
-                width: "100%",
-                height: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Box
-                sx={{
-                  width: "60%",
-                  height: "50%",
-                  display: "flex",
-                  padding: "2rem",
-                  alignItems: "center",
-                  justifyContent: "space-around",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "20%",
-                    height: "80%",
-                    display: "flex",
-                    padding: "2rem",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: "50%",
-                    backgroundColor: "white",
-                  }}
-                >
-                  {/* <GoogleIcon fontSize={"large"} /> */}
+            <Box className="googleSection">
+              <Box className="mainGoogleSec mb-3">
+                <Box className="googleBtn">
                   <GoogleLogin
                     type="submit"
                     onSuccess={handleSuccess}
@@ -127,34 +96,12 @@ const FormComponent = () => {
                     shape="pill"
                     type="icon"
                     size="large"
-                              />
+                  />
                 </Box>
-                <Box
-                  sx={{
-                    width: "20%",
-                    height: "80%",
-                    display: "flex",
-                    padding: "2rem",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: "50%",
-                    backgroundColor: "white",
-                  }}
-                >
+                <Box className="googleBtn">
                   <FacebookIcon fontSize={"large"} />
                 </Box>
-                <Box
-                  sx={{
-                    width: "20%",
-                    height: "80%",
-                    display: "flex",
-                    padding: "2rem",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: "50%",
-                    backgroundColor: "white",
-                  }}
-                >
+                <Box className="googleBtn">
                   <GitHubIcon fontSize={"large"} />
                 </Box>
               </Box>
@@ -168,6 +115,12 @@ const FormComponent = () => {
                   backgroundColor: "#031D36",
                   fontSize: "1.2rem",
                   marginTop: "1rem",
+                 
+                    "&:hover": {
+                      backgroundColor: "#67a4dd",
+                      fontWeight: "bold",
+                      color:"black"
+                    }
                 }}
               >
                 Create Account

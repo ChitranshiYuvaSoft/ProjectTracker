@@ -91,7 +91,12 @@ const Navbar = () => {
               //   <Box sx={{ display: 'flex'}}>
               <>
                 {user ? (
-                  <></>
+                  <>
+                  <Link to={"/userdashboard"} style={{ color: "white" }}>
+                      <Button color="inherit" sx={{ fontSize: "1.7rem" }}>
+                       User Dashboard
+                      </Button>
+                    </Link></>
                 ) : (
                   <>
                     <Link to={"/register"} style={{ color: "white" }}>

@@ -14,10 +14,6 @@ html {
   font-size: 62.5%;
 }
 
-/* CSS Variable */
-:root {
-}
-
 /* Scroll Bar CSS */
 
 ::-webkit-scrollbar {
@@ -332,7 +328,7 @@ html {
   justify-content: space-around;
 }
 .googleBtn {
-  width: 20%;
+  width: 22%;
   height: 80%;
   padding: 2.5rem;
   display: flex;
@@ -341,6 +337,7 @@ html {
   border-radius: 50%;
   background-color: white;
 }
+
 .submitBtn {
   padding-block: 1rem;
   border-radius: 0rem;
@@ -387,6 +384,36 @@ html {
   .homeSlider {
     height: 50rem;
   }
+  .registerScreen,
+  .loginScreen {
+    flex-direction: column;
+    height: auto;
+  }
+  .authSec,
+  .authFormSec {
+    width: 100%;
+  }
+  .authForm {
+    height: 80rem;
+  }
+  .fieldStyle {
+    padding-block: 2rem;
+    font-size: 1.8rem;
+  }
+  .googleSection {
+    height: 35%;
+  }
+  .googleSec {
+    width: 80%;
+    height: 70%;
+  }
+  .mainGoogleSec {
+    width: 55%;
+    height: 80%;
+  }
+  .submitBtn {
+    height: 8rem;
+  }
 }
 
 /* 400px */
@@ -406,5 +433,15 @@ html {
   }
   .footerSec {
     flex-direction: column;
+  }
+  .inputData {
+    width: 100%;
+  }
+  .mainGoogleSec {
+    width: 70%;
+    height: 85%;
+  }
+  .googleBtn {
+    width: 32%;
   }
 }

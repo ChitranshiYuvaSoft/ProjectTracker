@@ -1,41 +1,72 @@
 import React from "react";
-import { GoogleMap, Marker, LoadScript } from "@react-google-maps/api";
-import L from "leaflet";
-
-const center = {
-  lat: 40.748817,
-  lng: -73.985428,
-};
-
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { MarkerF } from "@react-google-maps/api";
+import SearchMap from "./SearchMap";
 const containerStyle = {
   width: "100%",
-  height: "40rem",
+  height: "100%",
 };
 
+const center = {
+  lat: -3.745,
+  lng: -38.523,
+};
 
+const libraries = ["places"];
 
 const marker = [
-  { id: 1, position: [51.505, -0.09], title: "Marker 1" },
-  { id: 2, position: [51.515, -0.1], title: "Marker 2" },
-  { id: 3, position: [51.525, -0.08], title: "Marker 3" },
+  {
+    id: 1,
+    position: { lat: 22.7196, lng: 75.8577 },
+    title: "Indore",
+    icon: "./Image/marker.png",
+  },
+  {
+    id: 2,
+    position: { lat: 23.1765, lng: 75.7885 },
+    title: "Ujjain",
+    icon: "./Image/marker.png",
+  },
+  {
+    id: 3,
+    position: { lat: 23.3315, lng: 75.0367 },
+    title: "Ratlam",
+    icon: "./Image/marker.png",
+  },
 ];
 
 const MapSec = () => {
   return (
     <>
-      <LoadScript googleMapsApiKey="AIzaSyARD66hnh32yrvy7Pk9y4XXjs7BhTTys4U">
-        <GoogleMap mapContainerStyle={containerStyle} zoom={7} center={center}>
-          {/* <Marker position={center}/> */}
+      <LoadScript
+        googleMapsApiKey="AIzaSyCGiAncbB6v4AzAParaKuNijMPxZHiWiXk" // Replace with your API key
+        libraries={libraries}
+      >
+        <SearchMap />
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={1}
+          options={{
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullScreenControl: true,
+            scrollwheel: true,
+          }}
+        >
           {marker.map((item, index) => (
-            <Marker
+            <MarkerF
               key={index}
-              position={marker.position}
-              title={marker.title}
-            />
+              position={item.position}
+              title={item.title}
+              icon={item.marker}
+            ></MarkerF>
           ))}
+          <></>
         </GoogleMap>
       </LoadScript>
     </>
   );
 };
+
 export default MapSec;

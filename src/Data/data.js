@@ -18,7 +18,3 @@ export const comapanyLogo = [
   "https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg",
   "https://st2.depositphotos.com/1065578/7533/i/450/depositphotos_75333451-stock-photo-abstract-geometric-company-logo.jpg",
 ];
-
-export const banner1 = {
-    heading
-}

@@ -56,7 +56,7 @@ const HomeScreen = () => {
         <Banner />
         <Banner2 />
         <Banner3 />
-        <Box className="mapSec">
+        <Box className="mapSec flex-column">
           <MapSec />
         </Box>
         <RatingUser />

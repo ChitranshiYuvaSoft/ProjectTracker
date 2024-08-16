@@ -35,14 +35,14 @@ const Navbar = () => {
   };
 
   const drawer = (
-    <Box sx={{ width: 250 }}>
+    <Box sx={{ width: 200, height: "150px" }}>
       <List>
-        <ListItem>
-          <ListItemText primary="Register" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Login" />
-        </ListItem>
+        <Link to="/register" style={{ textDecoration: "none", color: "black" }}>
+          <ListItem sx={{ fontSize: "2rem" }}>Register</ListItem>
+        </Link>
+        <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
+          <ListItem sx={{ fontSize: "2rem" }}>Login</ListItem>
+        </Link>
       </List>
     </Box>
   );
@@ -92,11 +92,12 @@ const Navbar = () => {
               <>
                 {user ? (
                   <>
-                  <Link to={"/userdashboard"} style={{ color: "white" }}>
+                    <Link to={"/userdashboard"} style={{ color: "white" }}>
                       <Button color="inherit" sx={{ fontSize: "1.7rem" }}>
-                       User Dashboard
+                        User Dashboard
                       </Button>
-                    </Link></>
+                    </Link>
+                  </>
                 ) : (
                   <>
                     <Link to={"/register"} style={{ color: "white" }}>
@@ -112,19 +113,7 @@ const Navbar = () => {
                   </>
                 )}
               </>
-              //   </Box>
             )}
-            {/* <FormControlLabel
-              control={
-                <Switch
-                  checked={darkMode}
-                  sx={{ color: "white" }}
-                  onChange={handleChange}
-                  name="dark"
-                  color="white"
-                />
-              }
-            /> */}
           </Box>
         </Toolbar>
       </AppBar>

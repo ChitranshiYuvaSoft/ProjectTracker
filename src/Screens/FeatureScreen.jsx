@@ -7,6 +7,13 @@ import { useParams } from "react-router-dom";
 
 const FeatureScreen = () => {
   const {featureData, edit} = useSelector(state => state.feature);
+
+  // const {featureData} = useSelector((state)=>{
+  //   return{
+  //     featireData: state.featire,
+  //     aitj: state.auth
+  //   }
+  // })
   // console.log(featureData);
 
   const dispatch = useDispatch();

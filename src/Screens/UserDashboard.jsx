@@ -5,13 +5,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -22,23 +18,21 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../Redux/auth/authSlice";
-// import { logOutUser } from "../Redux/auth/authSlice";
 
 const drawerWidth = 300;
 
 const UserDashboard = () => {
-
-  const {user} = useSelector(state => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
   React.useEffect(() => {
-    if(!user){
-      navigate('/login');
+    if (!user) {
+      navigate("/login");
     }
-  }, [user])
+  }, [user]);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -56,10 +50,10 @@ const UserDashboard = () => {
   };
 
   const logout = () => {
-    alert("Logout")
+    alert("Logout");
     dispatch(logOutUser());
-    navigate('/login')
-  }
+    navigate("/login");
+  };
 
   const drawer = (
     <div>
@@ -73,8 +67,8 @@ const UserDashboard = () => {
           alignItems: "center",
           justifyContent: "space-between",
           flexDirection: "column",
-          backgroundColor:"#214E78",
-          paddingTop:"2rem"
+          backgroundColor: "#214E78",
+          paddingTop: "2rem",
         }}
       >
         <Box
@@ -128,11 +122,18 @@ const UserDashboard = () => {
                   justifyContent: "start",
                 }}
               >
-                <Typography variant="h5" fontWeight={"bold"} sx={{color:"#B1BDC7"}}>
+                <Typography
+                  variant="h5"
+                  fontWeight={"bold"}
+                  sx={{ color: "#B1BDC7" }}
+                >
                   All Projects
                 </Typography>
               </ListItemText>
-              <Button sx={{color:"white"}} onClick={()=>navigate("/projects")}>
+              <Button
+                sx={{ color: "white" }}
+                onClick={() => navigate("/projects")}
+              >
                 <KeyboardArrowRightIcon fontSize="large" />
               </Button>
             </ListItem>
@@ -156,12 +157,16 @@ const UserDashboard = () => {
                   justifyContent: "start",
                 }}
               >
-                <Typography variant="h5" fontWeight={"bold"} sx={{color:"#B1BDC7"}}>
+                <Typography
+                  variant="h5"
+                  fontWeight={"bold"}
+                  sx={{ color: "#B1BDC7" }}
+                >
                   {" "}
                   All Features
                 </Typography>
               </ListItemText>
-              <Button sx={{color:"white"}}>
+              <Button sx={{ color: "white" }}>
                 <KeyboardArrowRightIcon fontSize="large" />
               </Button>
             </ListItem>
@@ -192,9 +197,9 @@ const UserDashboard = () => {
                 height: "70%",
                 fontSize: "1.1rem",
                 borderRadius: "0",
-                backgroundColor:"#031D36",
-                color:"white",
-                borderBlock:"1px solid white"
+                backgroundColor: "#031D36",
+                color: "white",
+                borderBlock: "1px solid white",
               }}
               onClick={logout}
             >
@@ -295,7 +300,6 @@ const UserDashboard = () => {
           justifyContent: "center",
           borderLeft: "none",
           boxShadow: "none",
-          
         }}
       >
         <DashboardUser />

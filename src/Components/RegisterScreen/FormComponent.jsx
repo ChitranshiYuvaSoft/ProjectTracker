@@ -115,17 +115,18 @@ const FormComponent = () => {
                       shape="pill"
                       type="icon"
                       size="large"
+                      style={{fontSize:"3rem"}}
                     />
                   </Box>
                   <Box
                    className="googleBtn"
                   >
-                    <FacebookIcon fontSize={"large"} />
+                    <FacebookIcon style={{fontSize:"3rem"}}/>
                   </Box>
                   <Box
                     className="googleBtn"
                   >
-                    <GitHubIcon fontSize={"large"} />
+                    <GitHubIcon style={{fontSize:"3rem"}}/>
                   </Box>
                 </Box>
               </Box>
